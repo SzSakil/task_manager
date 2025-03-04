@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/forgot_password_verify_email_screen.dart';
 import 'package:task_manager/ui/screens/sing_in_screen.dart';
 import 'package:task_manager/ui/screens/sing_up_screen.dart';
 import 'package:task_manager/ui/screens/splash_screen.dart';
@@ -10,6 +11,7 @@ class TaskManagerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      //debugShowCheckedModeBanner: false,
       initialRoute: '/',
       theme: ThemeData(
         colorSchemeSeed: AppColors.themeColor,
@@ -58,6 +60,8 @@ class TaskManagerApp extends StatelessWidget {
           widget = const SingInScreen();
         } else if (settings.name == SingUpScreen.name){
           widget = const SingUpScreen();
+        }else if (settings.name == ForgotPasswordVerifyEmailScreen.name){
+          widget = const ForgotPasswordVerifyEmailScreen();
         }
         return MaterialPageRoute(builder: (ctx) => widget);
       },

@@ -6,7 +6,7 @@ import 'package:task_manager/ui/widgets/screen_background.dart';
 class SingUpScreen extends StatefulWidget {
   const SingUpScreen({super.key});
 
-  static const String name = '/sing-in';
+  static const String name = '/sing-up';
 
   @override
   State<SingUpScreen> createState() => _SingUpScreenState();
@@ -14,6 +14,9 @@ class SingUpScreen extends StatefulWidget {
 
 class _SingUpScreenState extends State<SingUpScreen> {
   final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _lastNameTEController = TextEditingController();
+  final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -25,7 +28,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
       body: ScreenBackground(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(24),
             child: Form(
               key: _formKey,
               child: Column(
@@ -41,6 +44,24 @@ class _SingUpScreenState extends State<SingUpScreen> {
                   ),
                   const SizedBox(height: 8),
                   TextField(
+                    controller: _firstNameTEController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(hintText: 'First name'),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _lastNameTEController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(hintText: 'Last name'),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: _mobileTEController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(hintText: 'Mobile'),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
                     controller: _passwordTEController,
                     obscureText: true,
                     decoration: const InputDecoration(hintText: 'Password'),
@@ -51,17 +72,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
                     child: const Icon(Icons.login),
                   ),
                   const SizedBox(height: 48),
-                  Center(
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text('Forgot Password'),
-                        ), //text color change in go to the themeData
-                        _buildSingUpSection(),
-                      ],
-                    ),
-                  ),
+                  Center(child: _buildSingInSection()),
                 ],
               ),
             ),
@@ -71,24 +82,32 @@ class _SingUpScreenState extends State<SingUpScreen> {
     );
   }
 
-  Widget _buildSingUpSection() {
+  Widget _buildSingInSection() {
     return RichText(
       text: TextSpan(
-        text: "Don't have an account?",
+        text: "Already have an account?",
         style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600),
         children: [
           TextSpan(
-            text: 'Sign up',
+            text: 'Sign in',
             style: TextStyle(color: AppColors.themeColor),
-            recognizer: TapGestureRecognizer()..onTap = () {},
+            recognizer:
+                TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.pop(context);
+                  },
           ),
         ],
       ),
     );
   }
+
   @override
   void dispose() {
     _emailTEController.dispose();
+    _firstNameTEController.dispose();
+    _lastNameTEController.dispose();
+    _mobileTEController.dispose();
     _passwordTEController.dispose();
     super.dispose();
   }
