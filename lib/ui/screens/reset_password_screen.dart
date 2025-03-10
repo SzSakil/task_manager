@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/sing_in_screen.dart';
 import 'package:task_manager/ui/utils/app_colors.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
@@ -11,13 +10,14 @@ class ResetPasswordScreen extends StatefulWidget {
   static const String name = '/forgot-password/reset-password';
 
   @override
-  State<ResetPasswordScreen> createState() =>
-      _ResetPasswordScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ResetPasswordScreenState
-    extends State<ResetPasswordScreen> {
-  final TextEditingController _otplTEController = TextEditingController();
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  final TextEditingController _newPasswordTEController =
+      TextEditingController();
+  final TextEditingController _confirmPasswordTEController =
+      TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -39,23 +39,24 @@ class _ResetPasswordScreenState
                   const SizedBox(height: 4),
                   Text(
                     'Minimum length of password should be more then 8 letters',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: textTheme.titleSmall,
                   ),
                   const SizedBox(height: 24),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'New Password'
-                    ),
+                    controller: _newPasswordTEController,
+                    decoration: const InputDecoration(hintText: 'New Password'),
                   ),
                   const SizedBox(height: 8),
-                  TextFormField(),
+                  TextFormField(
+                    controller: _confirmPasswordTEController,
+                    decoration: const InputDecoration(
+                      hintText: 'Confirm New Password',
+                    ),
+                  ),
                   const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: () {},
-                    child: const Icon(Icons.login),
+                    child: const Text('Confirm'),
                   ),
                   const SizedBox(height: 48),
                   Center(child: _buildSingInSection()),
@@ -65,28 +66,6 @@ class _ResetPasswordScreenState
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildPinCodeTextField() {
-    return PinCodeTextField(
-      length: 6,
-      animationType: AnimationType.fade,
-      keyboardType: TextInputType.number,
-      pinTheme: PinTheme(
-        shape: PinCodeFieldShape.box,
-        borderRadius: BorderRadius.circular(5),
-        fieldHeight: 50,
-        fieldWidth: 50,
-        activeFillColor: Colors.white,
-        selectedFillColor: Colors.white,
-        inactiveFillColor: Colors.white,
-      ),
-      animationDuration: const Duration(milliseconds: 300),
-      backgroundColor: Colors.transparent,
-      enableActiveFill: true,
-      controller: _otplTEController,
-      appContext: context,
     );
   }
 
@@ -116,7 +95,8 @@ class _ResetPasswordScreenState
 
   @override
   void dispose() {
-    _otplTEController.dispose();
+    _newPasswordTEController.dispose();
+    _confirmPasswordTEController.dispose();
     super.dispose();
   }
 }

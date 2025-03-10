@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/screens/forgot_password_verify_email_screen.dart';
 import 'package:task_manager/ui/screens/forgot_password_verify_otp_screen.dart';
+import 'package:task_manager/ui/screens/main_bottom_nav_screen.dart';
 import 'package:task_manager/ui/screens/reset_password_screen.dart';
 import 'package:task_manager/ui/screens/sing_in_screen.dart';
 import 'package:task_manager/ui/screens/sing_up_screen.dart';
@@ -22,6 +23,10 @@ class TaskManagerApp extends StatelessWidget {
           fontSize: 28,
           fontWeight: FontWeight.w600,
         ),
+          titleSmall: TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.w500,
+          )
         ),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
@@ -68,6 +73,8 @@ class TaskManagerApp extends StatelessWidget {
           widget = const ForgotPasswordVerifyOtpScreen();
         }else if (settings.name == ResetPasswordScreen.name){
           widget = const ResetPasswordScreen();
+        }else if (settings.name == MainBottomNavScreen.name){
+          widget = const MainBottomNavScreen();
         }
         return MaterialPageRoute(builder: (ctx) => widget);
       },

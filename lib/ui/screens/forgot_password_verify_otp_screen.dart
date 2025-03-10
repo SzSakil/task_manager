@@ -40,10 +40,7 @@ class _ForgotPasswordVerifyOtpScreenState
                   const SizedBox(height: 4),
                   Text(
                     'A 6 digits of OTP has been sent to your email address',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: textTheme.titleSmall,
                   ),
                   const SizedBox(height: 24),
                   _buildPinCodeTextField(),
