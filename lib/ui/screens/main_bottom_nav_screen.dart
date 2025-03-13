@@ -24,7 +24,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     return Scaffold(
       body: _screens[_selectedIndex],
       bottomNavigationBar: NavigationBar(
-        selectedIndex: -_selectedIndex,
+        selectedIndex: _selectedIndex,
         onDestinationSelected: (int index) {
           _selectedIndex = index;
           setState(() {});
