@@ -84,7 +84,7 @@ class _SingInScreenState extends State<SingInScreen> {
   Widget _buildSingUpSection() {
     return RichText(
       text: TextSpan(
-        text: "Don't have an account?",
+        text: "Don't have an account? ",
         style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600),
         children: [
           TextSpan(
