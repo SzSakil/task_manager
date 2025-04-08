@@ -110,6 +110,9 @@ class _SingUpScreenState extends State<SingUpScreen> {
                           .isEmpty ?? true) {
                         return 'Enter your password';
                       }
+                      if (value!.length <6){
+                        return 'Enter a password more then 6 letters';
+                      }
                       return null;
                     },
                   ),
@@ -175,7 +178,7 @@ class _SingUpScreenState extends State<SingUpScreen> {
   Widget _buildSingInSection() {
     return RichText(
       text: TextSpan(
-        text: "Already have an account?",
+        text: "Already have an account? ",
         style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w600),
         children: [
           TextSpan(
