@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/controller/auth_controller.dart';
 import 'package:task_manager/ui/screens/sing_in_screen.dart';
@@ -17,7 +19,13 @@ class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColors.themeColor,
       title: Row(
         children: [
-          const CircleAvatar(radius: 16),
+          CircleAvatar(
+            radius: 16,
+            backgroundImage: MemoryImage(
+              base64Decode(AuthController.userModel?.photo ?? ''),
+            ),
+            onBackgroundImageError: (_, __) => const Icon(Icons.person_outline),
+          ),
           const SizedBox(width: 8),
           Expanded(
             child: GestureDetector(
@@ -45,7 +53,10 @@ class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () async {
               await AuthController.clearUserData();
               Navigator.pushNamedAndRemoveUntil(
-                context, SingInScreen.name, (predicate) => false);
+                context,
+                SingInScreen.name,
+                (predicate) => false,
+              );
             },
             icon: Icon(Icons.logout),
           ),

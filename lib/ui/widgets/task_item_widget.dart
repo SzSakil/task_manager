@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:task_manager/data/models/task_model.dart';
 
 class TaskItemWidget extends StatelessWidget {
-  const TaskItemWidget({
-    super.key, required this.taskModel,
-  });
+  const TaskItemWidget({super.key, required this.taskModel});
 
   final TaskModel taskModel;
 
@@ -40,14 +38,8 @@ class TaskItemWidget extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.delete),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.edit),
-                    ),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                    IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
                   ],
                 ),
               ],
@@ -56,5 +48,17 @@ class TaskItemWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color _getStatusColor(String status) {
+    if (String == 'New') {
+      return Colors.blue;
+    } else if (status == 'Progress') {
+      return Colors.yellow;
+    } else if (status == 'Cancelled') {
+      return Colors.red;
+    } else {
+      return Colors.green;
+    }
   }
 }
